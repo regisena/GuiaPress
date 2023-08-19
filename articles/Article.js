@@ -19,6 +19,6 @@ const Article = connection.define("articles", {
 Category.hasMany(Article); // Tem muitos / 1(categoria) --> M(artigos)
 Article.belongsTo(Category); // Um artigo pertende a uma categoria / 1(artigo) --> 1(categoria)
 
-// Article.sync({force: true}); //comentado para não ficar recriando esta tabela
+ //Article.sync({force: true}); //comentado para não ficar recriando esta tabela
 
 module.exports = Article;

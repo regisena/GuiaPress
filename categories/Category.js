@@ -11,6 +11,6 @@ const Category = connection.define("categories", {
     }
 });
 
-// Category.sync({force: true}); // remover após criação da tabela
+ //Category.sync({force: true}); //comentado para não ficar recriando esta tabela
 
 module.exports = Category;
