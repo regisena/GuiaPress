@@ -1,4 +1,4 @@
 # GuiaPress
 
 # executar o projeto
-nodemon index.js
+nodemon index.js teste
