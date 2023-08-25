@@ -41,6 +41,23 @@ app.get("/", (req, res) => {
     //res.render("index");
 });
 
+app.get("/:slug", (req, res) => {
+    var slug = req.params.slug;
+    Article.finOne({
+        where: {
+            slug: slug
+        }
+    }).then(article => {
+        if(article != undefined){
+            res.render("article", {article:article});
+        }else{
+            res.redirect("/");
+        }
+    }).catch(err => {
+        res.redirect("/");
+    })
+});
+
 app.listen(8080, () => {
     console.log("O servidor está rodando!");
 });
