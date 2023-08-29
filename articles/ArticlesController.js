@@ -5,11 +5,12 @@ const Article = require("./Article");
 const slugify = require("slugify");
 
 router.get("/admin/articles", (req, res) => {
-    Article.findAll({
+    res.send("ROTA DE ARTIGOS");
+    /*Article.findAll({
         include: [{model: Category}]
     }).then(articles => {
         res.render("admin/articles/index", {articles: articles});
-    });
+    });*/
 });
 
 router.get("/admin/articles/new", (req, res) => {
@@ -50,6 +51,21 @@ router.post("/articles/delete", (req, res) => {
     }else{ // null
         res.redirect("/admin/articles");
     }
+});
+
+router.post("/admin/articles/edit/:id", (req, res) => {
+    var id = req.params.id;
+    Article.findByPk(id).then(article => {
+        if(article != undefined){
+            Category.findAll().then(categories => {
+                res.render("admin/articles/edit", {categories: categories});
+            });
+        }else{
+            res.redirect("/");
+        }
+    }).catch(err => {
+        res.redirect("/");
+    });
 });
 
 module.exports = router;
