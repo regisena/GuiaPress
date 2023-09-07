@@ -5,15 +5,17 @@ const connection = require("./database/database");
 
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const usersController = require("./users/UsersController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./users/User");
 
 // View engine
-app.set("view engine","ejs");
+app.set('view engine','ejs');
 
 // Static
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 // Body parser
 app.use(bodyParser.urlencoded({extended: false}));
@@ -32,6 +34,7 @@ connection
 
 app.use("/",categoriesController);
 app.use("/",articlesController);
+app.use("/",usersController);
 
 app.get("/", (req, res) => {
     //res.send("Bem-vindo ao meu site!");
