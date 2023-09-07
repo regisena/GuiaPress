@@ -99,7 +99,6 @@ router.get("/articles/page/:num", (req, res) => {
         limit: 4,   // retorna esta quantidade de artigos por página
         offset: offset   // retorna a partir desta variável definada como offset
     }).then(articles => {
-
         var next;
         if(offset + 4 >= articles.count){
             next = false;
@@ -111,6 +110,11 @@ router.get("/articles/page/:num", (req, res) => {
             next: next,
             articles: articles,
         }
+
+        Category.findAll().then(categories => {
+            res.render("admin/articles/page", {result: result, categories: categories});
+        });
+
         res.json(result);
     });
 });
